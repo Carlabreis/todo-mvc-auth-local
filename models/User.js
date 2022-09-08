@@ -1,7 +1,7 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt') //enables us to change a password to a $ version and back
 const mongoose = require('mongoose')
-
-const UserSchema = new mongoose.Schema({
+// schemas are just constructor functions
+const UserSchema = new mongoose.Schema({  // to create a new user
   userName: { type: String, unique: true },
   email: { type: String, unique: true },
   password: String
@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
 
 
 // Password hash middleware.
- 
+
  UserSchema.pre('save', function save(next) {
   const user = this
   if (!user.isModified('password')) { return next() }

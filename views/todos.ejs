@@ -8,24 +8,36 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Todos</h1>
-    <ul>
-    <% todos.forEach( el => { %>
-            <li class='todoItem' data-id='<%=el._id%>'>
-                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                <span class='del'> Delete </span>
-            </li>
-    <% }) %>    
-    </ul>
-
-    <h2><%= user.userName %> has <%= left %> things left to do.</h2>
+  <section>
+    <a href="/logout">Logout</a>
+    <h1>Under 5min Todo List</h1>
 
     <form action="/todos/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
     </form>
 
-    <a href="/logout">Logout</a>
+    <div class="row">
+      <div class="left">
+        <h2>Todos:</h2>
+        <p><%= user.userName %> has <%= left %> things left to do</p>
+      </div>
+
+      <div class="right">
+        <ul class="no-bullets">
+        <% todos.forEach( el => { %>
+                <li class='todoItem' data-id='<%=el._id%>'>
+                    <span class='<%= el.completed === true ? 'completed' : 'not'%>'><input type="checkbox"> <%= el.todo %> </span>
+                    <span class='del'> <img src="css/delete.png" class="delete-btn"> </span>
+                </li>
+        <% }) %>
+        </ul>
+      </div>
+    </div>
+
+
+  </section>
+
 
     <script src="js/main.js"></script>
 </body>
